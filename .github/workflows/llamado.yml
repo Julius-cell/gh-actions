@@ -1,3 +1,4 @@
+name: Llamado
 on:
   workflow_call:
     inputs:

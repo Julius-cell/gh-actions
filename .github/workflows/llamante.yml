@@ -1,0 +1,7 @@
+name: Llamante
+on:
+  workflow_dispatch:
+
+jobs:
+  call-workflow-in-local-repo:
+    uses: ./.github/workflows/llamado.yml
