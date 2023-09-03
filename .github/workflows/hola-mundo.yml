@@ -1,0 +1,27 @@
+name: hola-mundo #Nombre del workflow
+on: [push] #evento que lo activará
+jobs: #Definición de los jobs
+  hola-mundo: #Nombre del job
+    runs-on: ubuntu-latest #Maquina en la que correrá
+
+    steps: #Lista de steps del job hola-mundo
+
+      - name: Public IP #Nombre del step
+        id: ip #identificador usable dentro del job para otros steps
+        uses: haythem/public-ip@v1.3 
+
+      - name: Hola mundo #Segundo step de nombre Hola mundo
+        run: echo ¡Hola Mundo desde ${{ steps.ip.outputs.ipv4 }}! #bash
+
+      - name: Checkout #Nombre del step
+        uses: actions/checkout@v3
+     
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install TS
+        run: npm install -g typescript    
+      
+      - name: Run main
+        run: tsc main.ts
