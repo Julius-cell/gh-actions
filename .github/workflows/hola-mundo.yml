@@ -14,14 +14,7 @@ jobs: #Definición de los jobs
         run: echo ¡Hola Mundo desde ${{ steps.ip.outputs.ipv4 }}! #bash
 
       - name: Checkout #Nombre del step
-        uses: actions/checkout@v3
-     
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install TS
-        run: npm install -g typescript    
+        uses: actions/checkout@v3   
       
       - name: Run main
-        run: tsc main.ts
+        run: main.js
