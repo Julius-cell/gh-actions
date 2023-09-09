@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
       - id: obtener_paso
         run: |
-          echo "paso_actual=1" >> $GITHUB_OUTPUT
+          echo "paso_actual=2" >> $GITHUB_OUTPUT
     outputs:
       paso_actual: ${{ steps.obtener_paso.outputs.paso_actual }}
 
