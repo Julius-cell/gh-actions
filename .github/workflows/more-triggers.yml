@@ -1,6 +1,8 @@
-name: Triggers
+name: Triggers and node envars
 on:
   push:
+    # Debido a este trigger es que se va a ejecutar mayormente
+    # Ya que hago push a main directamente
     branches:
       - master
   pull_request:
@@ -10,6 +12,7 @@ on:
   issues:
     types:
       - labeled
+  # Lo puedo volver a ejecutar manual con este flujo
   workflow_dispatch:
     inputs:
       lenguaje_favorito:
@@ -28,18 +31,24 @@ on:
         type: string
   schedule:
     - cron: "15 22 * * *"
+
 jobs:
   hola-mundo-manual:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Definir nombre
         run: echo "USERNAME=${{ inputs.nombre }}" >> $GITHUB_ENV
       - name: Definir lenguaje
         run: echo "LANGUAGE=${{ inputs.lenguaje_favorito }}" >> $GITHUB_ENV
       - name: Correr script
         run: node hola-lenguaje.js
+
   hola-mundo:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     runs-on: ubuntu-latest

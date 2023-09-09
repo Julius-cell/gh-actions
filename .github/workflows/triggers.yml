@@ -1,4 +1,4 @@
-name: Paso 2, Conoce los principales Triggers
+name: Conoce los principales Triggers (Conditionals)
 
 # Reference https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
       - id: obtener_paso
         run: |
-          echo "paso_actual=$(cat ./.github/script/STEP)" >> $GITHUB_OUTPUT
+          echo "paso_actual=1" >> $GITHUB_OUTPUT
     outputs:
       paso_actual: ${{ steps.obtener_paso.outputs.paso_actual }}
 
