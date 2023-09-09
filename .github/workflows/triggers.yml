@@ -45,25 +45,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # We'll need to check out the repository so that we can edit the README
+      - name: Say Hello
+        uses: echo "Hello!!"
+
+  hola-mundo:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Let's get all the branches
-
-      # Verify the learner added the file contents
-      - name: Verificar contenido del nuevo workflow
-        run: ./.github/script/check-file.sh
-        env:
-          FILE: ".github/workflows/triggers.yml"
-          SEARCH: "name:"
-
-      # Update README to close <details id=2> and open <details id=3>
-      # and set STEP to '3'
-      - name: Actualizar a paso 3
-        uses: skills/action-update-step@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          from_step: 2
-          to_step: 3
-          branch_name: aprendiendo-github-actions
+      - name: Definir variable
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: node main.js
