@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Say Hello
-        uses: echo "Hello!!"
+        run: echo "Hello!!"
 
   hola-mundo:
     if: ${{ github.event_name != 'workflow_dispatch' }}
