@@ -6,13 +6,12 @@ env:
   super_duper_var: totally_awesome
 
 jobs:
-
   linux_job:
     runs-on: ubuntu-latest
     env:
       mascot: Tux
     steps:
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+      - run: echo 'Hi ${{ env.mascot }}' # Hi Tux
 
   prod-check:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -34,6 +33,10 @@ jobs:
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump secrets.GITHUB_TOKEN context
+        env:
+          STEPS_CONTEXT: ${{ toJson(secrets.GITHUB_TOKEN) }}
         run: echo "$STEPS_CONTEXT"
       - name: Dump runner context
         env:
