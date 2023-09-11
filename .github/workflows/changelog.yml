@@ -2,12 +2,12 @@ name: Changelog CI
 
 on:
   pull_request:
-    types: [ opened ]
+    types: [opened]
 
   workflow_dispatch:
     inputs:
       release_version:
-        description: 'Set Release Version'
+        description: "Set Release Version"
         required: true
 
 jobs:
@@ -22,7 +22,8 @@ jobs:
         id: changelog-ci
         with:
           release_version: ${{ github.event.inputs.release_version }}
-          committer_email: 'test@test.com'
+          committer_username: ${{github.actor}}
+          committer_email: "test@test.com"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Changelog Output
