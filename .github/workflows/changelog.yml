@@ -22,10 +22,10 @@ jobs:
         id: changelog-ci
         with:
           release_version: ${{ github.event.inputs.release_version }}
-          committer_username: ${{github.actor}}
-          committer_email: "test@test.com"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Changelog Output
         run: |
           echo "${{ steps.changelog-ci.outputs.changelog }}"
+
+      
