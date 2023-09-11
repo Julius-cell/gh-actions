@@ -1,6 +1,19 @@
 name: Contextos
 on: push
+
+env:
+  mascot: Mona
+  super_duper_var: totally_awesome
+
 jobs:
+
+  linux_job:
+    runs-on: ubuntu-latest
+    env:
+      mascot: Tux
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+
   prod-check:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
