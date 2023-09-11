@@ -22,6 +22,7 @@ jobs:
         id: changelog-ci
         with:
           release_version: ${{ github.event.inputs.release_version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Changelog Output
         run: |
