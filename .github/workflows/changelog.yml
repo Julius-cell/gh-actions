@@ -1,9 +1,11 @@
 name: Changelog CI
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Set Release Version'
+        required: true
 
 jobs:
   build:
@@ -15,4 +17,4 @@ jobs:
       - name: Run Changelog CI
         uses: saadmk11/changelog-ci@v1.1.2
         with:
-          release_version: 
+          release_version: ${{ github.event.inputs.release_version }}
